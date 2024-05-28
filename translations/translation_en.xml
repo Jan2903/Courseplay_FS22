@@ -114,7 +114,7 @@
     <text name="CP_ai_messageErrorIsFull" text="AI worker %s has stopped work unexpectedly - tank is full!"/>
     <text name="CP_ai_messageError" text="AI worker %s has stopped work unexpectedly - left the course!"/>
     <text name="CP_ai_messageErrorWrongBaleWrapType" text="AI worker %s has stopped work unexpectedly - no bales of selected type found!"/>
-    <text name="CP_ai_messageErrorNoPathFound" text="AI worker %s has stopped work unexpectedly - no Path found!"/>
+    <text name="CP_ai_messageErrorNoPathFound" text="AI worker %s has stopped work unexpectedly - no path found!"/>
     <text name="CP_ai_messageErrorGroundUnloadNotSupported" text="AI worker %s has stopped work unexpectedly - unloading on the field not possible!"/>
     <text name="CP_ai_messageErrorCutterNotSupported" text="AI worker %s has stopped work unexpectedly - attaching of the header is impossible!"/>
     <text name="CP_ai_messageErrorAutomaticCutterAttachNotActive" text="AI worker %s has stopped work unexpectedly - automatic cutter attach disabled!"/>
@@ -220,7 +220,7 @@
     <text name="CP_vehicle_setting_bunkerSiloWorkWidth_tooltip" text="Work width. Value: 0 - 50"/>
     <text name="CP_vehicle_setting_levelerHeightOffset_title" text="Shield height offset"/>
     <text name="CP_vehicle_setting_levelerHeightOffset_tooltip" text="Offset of the shield form the ground. Value: 0 - 1"/>
-    <text name="CP_vehicle_setting_loadingShovelHeightOffset_title" text="Shovel hight offset."/>
+    <text name="CP_vehicle_setting_loadingShovelHeightOffset_title" text="Shovel hight offset"/>
     <text name="CP_vehicle_setting_loadingShovelHeightOffset_tooltip" text="Offset for the shovel loading position. Value: -1 - 1"/>
     <!---->
     <!--Vehicle settings speed-->
@@ -414,8 +414,8 @@ The course is saved automatically on closing of the editor and overrides the sel
     <text name="CP_courseManager_targetIsNoFolderError" text="Target location is not a folder (%s)!"/>
     <text name="CP_courseManager_targetIsNoCourseError" text="Target location is not a course (%s)!"/>
     <text name="CP_courseManager_invalidNameError" text="Course name (%s) is invalid!"/>
-    <text name="CP_courseManager_basicSettings" text="Course interaction."/>
-    <text name="CP_courseManager_advancedSettings" text="Edit files."/>
+    <text name="CP_courseManager_basicSettings" text="Course interaction"/>
+    <text name="CP_courseManager_advancedSettings" text="Edit files"/>
     <text name="CP_courseManager_activate" text="Activate"/>
     <!---->
     <!--Course editor-->
@@ -485,10 +485,10 @@ The course is saved automatically on closing of the editor and overrides the sel
     <text name="CP_customFieldManager_draw_header" text="Draw custom field lines with right click."/>
     <text name="CP_customFieldManager_draw_sub_header" text="Hold the left shift key for a straight line."/>
     <text name="CP_customFieldManager_save" text="Save custom field"/>
-    <text name="CP_controllerGui_startRecording" text="Start custom field recording."/>
-    <text name="CP_controllerGui_stopRecording" text="Stop custom field recording."/>
-    <text name="CP_controllerGui_pauseRecording" text="Pause custom field recording."/>
-    <text name="CP_controllerGui_unpauseRecording" text="Unpause custom field recording."/>
+    <text name="CP_controllerGui_startRecording" text="Start custom field recording"/>
+    <text name="CP_controllerGui_stopRecording" text="Stop custom field recording"/>
+    <text name="CP_controllerGui_pauseRecording" text="Pause custom field recording"/>
+    <text name="CP_controllerGui_unpauseRecording" text="Unpause custom field recording"/>
     <!---->
     <!--Help menu-->
     <!---->
@@ -769,6 +769,7 @@ The Informations are the following:
 - Driving to trailer
 - Ouf of money
 - Waiting for rain to finish
+- Waits for snow to disappear
 - Waiting on unloader
 - Left the course, stopped
 - Wrong bale type
@@ -776,6 +777,12 @@ The Informations are the following:
 - Tipping to ground not possible
 - Cutter not supported
 - Cutter attaching deactivated
+- Wrong season for fruit
+- Wrong fruit for mission selected
+- Pallets are full
+- No pallets
+
+
 "/>
     <text name="CP_help_page_vineWork_title" text="Vine work"/>
     <text name="CP_help_page_vineWorkConditions_text" text="

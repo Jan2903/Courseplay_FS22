@@ -113,12 +113,12 @@
     <!---->
     <text name="CP_ai_messageErrorIsFull" text="Helfer %s hat die Arbeit gestoppt - Gerät ist voll!"/>
     <text name="CP_ai_messageError" text="Helfer %s hat die Arbeit gestoppt - Kurs verlassen!"/>
-    <text name="CP_ai_messageErrorWrongBaleWrapType" text="Helfer %s hat die Arbeit gestoppt - keinen Ballen des gewählten Typs gefunden!"/>
-    <text name="CP_ai_messageErrorNoPathFound" text="Helfer %s hat die Arbeit gestoppt - keinen Weg gefunden!"/>
-    <text name="CP_ai_messageErrorGroundUnloadNotSupported" text="Helfer %s hat die Arbeit gestoppt - abladen auf dem Boden nicht möglich!"/>
-    <text name="CP_ai_messageErrorCutterNotSupported" text="Helfer %s hat die Arbeit gestoppt - ankuppelen von dem Schneidwerk nicht möglich!"/>
-    <text name="CP_ai_messageErrorAutomaticCutterAttachNotActive" text="Helfer %s hat die Arbeit gestoppt - automatisches Scheidwerk ankuppeln deaktiviert!"/>
-    <text name="CP_ai_messageErrorWrongMissionFruitType" text="Helfer %s hat die Arbeit gestoppt - falsche Frucht für die Mission ausgewählt!"/>
+    <text name="CP_ai_messageErrorWrongBaleWrapType" text="Helfer %s hat die Arbeit gestoppt - Keinen Ballen des gewählten Typs gefunden!"/>
+    <text name="CP_ai_messageErrorNoPathFound" text="Helfer %s hat die Arbeit gestoppt - Keinen Weg gefunden!"/>
+    <text name="CP_ai_messageErrorGroundUnloadNotSupported" text="Helfer %s hat die Arbeit gestoppt - Abladen auf dem Boden nicht möglich!"/>
+    <text name="CP_ai_messageErrorCutterNotSupported" text="Helfer %s hat die Arbeit gestoppt - Ankuppeln vom Schneidwerk nicht möglich!"/>
+    <text name="CP_ai_messageErrorAutomaticCutterAttachNotActive" text="Helfer %s hat die Arbeit gestoppt - Scheidwerk automatisch ankuppeln deaktiviert!"/>
+    <text name="CP_ai_messageErrorWrongMissionFruitType" text="Helfer %s hat die Arbeit gestoppt - Falsche Frucht für die Mission ausgewählt!"/>
     <!---->
     <!--AI fieldwork task descriptions-->
     <!---->
@@ -133,10 +133,10 @@
     <!---->
     <text name="CP_ai_taskDescriptionUnloadCombine" text="Entlädt Drescher"/>
     <text name="CP_ai_taskDescriptionWaitsForTargetCombine" text="Wartet auf Drescher"/>
-    <text name="CP_ai_taskDescriptionUnloadSiloLoader" text="Entlädt Lade Fahrzeug"/>
-    <text name="CP_ai_taskDescriptionWaitsForTargetSiloLoader" text="Wartet auf Lade Fahrzeug"/>
+    <text name="CP_ai_taskDescriptionUnloadSiloLoader" text="Entlädt Ladefahrzeug"/>
+    <text name="CP_ai_taskDescriptionWaitsForTargetSiloLoader" text="Wartet auf Ladefahrzeug"/>
     <text name="CP_ai_taskDescriptionUnloadingToHeap" text="Entlädt auf einem Haufen"/>
-    <text name="CP_ai_taskDescriptionUnloadingToTrailer" text="Entlädt in ein Anhänger"/>
+    <text name="CP_ai_taskDescriptionUnloadingToTrailer" text="Entlädt in einen Anhänger"/>
     <text name="CP_ai_taskDescriptionUnloadingWithGiants" text="Entlädt mit Giants Helfer"/>
     <!---->
     <!--AI silo worker task descriptions-->
@@ -163,7 +163,7 @@
     <text name="CP_vehicle_setting_subTitle_multitool" text="Multitooleinstellungen"/>
     <text name="CP_vehicle_setting_subTitle_speed" text="Geschwindigkeiten"/>
     <text name="CP_vehicle_setting_subTitle_debug" text="Debugeinstellungen"/>
-    <text name="CP_vehicle_setting_showCourse_title" text="Zeige Kurs"/>
+    <text name="CP_vehicle_setting_showCourse_title" text="Kurs zeigen"/>
     <text name="CP_vehicle_setting_showCourse_tooltip" text="Zeigt den Kurs des aktuell gewählten Fahrzeugs."/>
     <text name="CP_vehicle_setting_showCourse_startStop" text="Nur Start/Ende"/>
     <text name="CP_vehicle_setting_showCourse_currentWaypoint" text="Aktuelle Wegpunkte"/>
@@ -176,7 +176,7 @@
     <text name="CP_vehicle_setting_stopAtEnd_tooltip" text="Fahrzeug bleibt nach der Arbeit am Endpunkt stehen."/>
     <text name="CP_vehicle_setting_allowReversePathfinding_title" text="Pathfinder darf rückwärts fahren"/>
     <text name="CP_vehicle_setting_allowReversePathfinding_tooltip" text="Erlaubt dem Pathfinder, einen Rückwärtskurs zu generieren."/>
-    <text name="CP_vehicle_setting_allowPathfinderTurns_title" text="Benutze Pathfinder im Wendemanöver"/>
+    <text name="CP_vehicle_setting_allowPathfinderTurns_title" text="Pathfinder im Wendemanöver benutzen"/>
     <text name="CP_vehicle_setting_allowPathfinderTurns_tooltip" text="Aktiviert den Pathfinder für Wendemanöver, zum Beispiel um Objekten oder der Frucht auszuweichen."/>
     <text name="CP_vehicle_setting_foldImplementAtEnd_title" text="Geräte am Ende einklappen"/>
     <text name="CP_vehicle_setting_foldImplementAtEnd_tooltip" text="Geräte am Ende des Kurses einklappen oder nicht."/>
@@ -199,9 +199,9 @@
     <text name="CP_vehicle_setting_baleCollectorOffset_title" text="Ballen Aufnahme Versatz"/>
     <text name="CP_vehicle_setting_baleCollectorOffset_tooltip" text="Versatz für den Ballensammler"/>
     <text name="CP_vehicle_setting_combineOffsetX_title" text="Versatz links/rechts"/>
-    <text name="CP_vehicle_setting_combineOffsetX_tooltip" text="Versatz zum Drescher Rohr Rechts(+) und Links(-)"/>
+    <text name="CP_vehicle_setting_combineOffsetX_tooltip" text="Versatz zum Drescherohr rechts(+) und links(-)"/>
     <text name="CP_vehicle_setting_combineOffsetZ_title" text="Versatz vorne/hinten"/>
-    <text name="CP_vehicle_setting_combineOffsetZ_tooltip" text="Versatz zum Drescher Rohr Vorne(+) und Hinten(-)"/>
+    <text name="CP_vehicle_setting_combineOffsetZ_tooltip" text="Versatz zum Drescherrohr vorne(+) und hinten(-)"/>
     <text name="CP_vehicle_setting_fullThreshold_title" text="Entleeren wenn über:"/>
     <text name="CP_vehicle_setting_fullThreshold_tooltip" text="Wenn der Füllstand des Abfahrers über diesem Wert liegt, wird er nicht auf den Drescher warten."/>
     <text name="CP_vehicle_setting_useAdditiveFillUnit_title" text="Siliermittel überwachen"/>
@@ -210,7 +210,7 @@
     <text name="CP_vehicle_setting_symmetricLaneChange_tooltip" text="Symmetrischer Bahnenwechsel"/>
     <text name="CP_vehicle_setting_convoyDistance_title" text="Entfernung Fahrzeugverband "/>
     <text name="CP_vehicle_setting_convoyDistance_tooltip" text="Entfernung zwischen den Fahrzeugen. Wert: 40 - 400"/>
-    <text name="CP_vehicle_setting_debugActive_title" text="Fahrzeug debug"/>
+    <text name="CP_vehicle_setting_debugActive_title" text="Fahrzeug-Debug"/>
     <text name="CP_vehicle_setting_debugActive_tooltip" text="Debuginformationen für das Fahrzeug ein- oder ausschalten. Visuell und Logeinträge."/>
     <!---->
     <!--Vehicle bunker silo settings-->
@@ -220,7 +220,7 @@
     <text name="CP_vehicle_setting_bunkerSiloWorkWidth_tooltip" text="Arbeitsbreite. Wert: 0 - 50"/>
     <text name="CP_vehicle_setting_levelerHeightOffset_title" text="Versatz Schildhöhe"/>
     <text name="CP_vehicle_setting_levelerHeightOffset_tooltip" text="Höhenversatz vom Schild zum Boden. Wert: 0 - 1"/>
-    <text name="CP_vehicle_setting_loadingShovelHeightOffset_title" text="Versatz Schaufelhöhe."/>
+    <text name="CP_vehicle_setting_loadingShovelHeightOffset_title" text="Versatz Schaufelhöhe"/>
     <text name="CP_vehicle_setting_loadingShovelHeightOffset_tooltip" text="Höhenversatz der Schaufel für die Ladeposition. Wert: -1 - 1"/>
     <!---->
     <!--Vehicle settings speed-->
@@ -346,9 +346,9 @@
     <text name="CP_global_setting_fuelThreshold_tooltip" text="Fahrer wird entlassen, wenn Kraftstoff unter diesem Wert liegt."/>
     <text name="CP_global_setting_brokenThreshold_title" text="Minimum Zustand"/>
     <text name="CP_global_setting_brokenThreshold_tooltip" text="Fahrer wird entlassen, wenn der Schaden des Fahrzeugs oder Arbeitsgeräts über diesem Wert liegt. 100% ist aus."/>
-    <text name="CP_global_setting_stopThreshingDuringRain_title" text="Stoppt Drescher während Regen"/>
+    <text name="CP_global_setting_stopThreshingDuringRain_title" text="Drescher während Regen stoppen"/>
     <text name="CP_global_setting_stopThreshingDuringRain_tooltip" text="Wenn die Einstellung aktiviert ist, dann warten alle Drescher solange, bis der Regen aufhört."/>
-    <text name="CP_global_setting_fruitDestruction_title" text="Helfer Fruchtzerstörung"/>
+    <text name="CP_global_setting_fruitDestruction_title" text="Fruchtzerstörung Helfer"/>
     <text name="CP_global_setting_fruitDestruction_tooltip" text="Aktiviert/deaktiviert die Fruchtzerstörung von Helfern."/>
     <text name="CP_global_setting_fruitDestruction_only_cp" text="Aktiviert für Courseplay Helfer"/>
     <text name="CP_global_setting_fruitDestruction_all_helpers" text="Aktiviert für alle Helfer"/>
@@ -360,18 +360,18 @@
     <text name="CP_global_setting_expertModeActive_tooltip" text="Schaltet den Expertenmodus an/aus, um weitere Einstellungen freizuschalten."/>
     <text name="CP_global_setting_controllerHudSelected_title" text="Gamepadfreundliches HUD"/>
     <text name="CP_global_setting_controllerHudSelected_tooltip" text="Benutze das HUD, welches sich über ein Gamepad bedienen lässt."/>
-    <text name="CP_global_setting_showActionEventHelp_title" text="Zeige Tastenbelegung"/>
+    <text name="CP_global_setting_showActionEventHelp_title" text="Tastenbelegung zeigen"/>
     <text name="CP_global_setting_showActionEventHelp_tooltip" text="Schaltet die Anzeige der Tastenbelegung an oder aus."/>
-    <text name="CP_global_setting_showsAllActiveCourses_title" text="Zeige alle Kurse"/>
+    <text name="CP_global_setting_showsAllActiveCourses_title" text="Alle Kurse zeigen"/>
     <text name="CP_global_setting_showsAllActiveCourses_tooltip" text="Zeigt alle geladenen Kurse auf der Karte."/>
-    <text name="CP_global_setting_drawOntoTheHudMap_title" text="Zeige Kurse auf der Minikarte"/>
+    <text name="CP_global_setting_drawOntoTheHudMap_title" text="Kurse auf der Minikarte zeigen"/>
     <text name="CP_global_setting_drawOntoTheHudMap_tooltip" text="Ermöglicht die Anzeige des Kurses auf der kleinen Karte."/>
     <text name="CP_global_setting_infoTextHudActive_title" text="Helfer-Infofenster"/>
     <text name="CP_global_setting_infoTextHudActive_tooltip" text="Schaltet das Infofenster für die CP-Helfer an, an bei Info oder aus."/>
     <text name="CP_global_setting_infoTextHudActive_active_hide_without_message" text="Aktiv mit Nachricht"/>
     <text name="CP_global_setting_infoTextHudPlayerMouseActive_title" text="Spielermaus"/>
     <text name="CP_global_setting_infoTextHudPlayerMouseActive_tooltip" text="Aktiviert/deaktiviert die Mausinteraktion außerhalb eines Fahrzeugs."/>
-    <text name="CP_global_setting_preferCustomFields_title" text="Bevorzuge erstellten Feldrand"/>
+    <text name="CP_global_setting_preferCustomFields_title" text="Erstellten Feldrand bevorzugen"/>
     <text name="CP_global_setting_preferCustomFields_tooltip" text="Bevorzugt den selbst erstellten Feldrand, wenn dieser auf einem normalen Feld liegt."/>
     <text name="CP_global_setting_distanceUnit_title" text="Distanzeinheit"/>
     <text name="CP_global_setting_distanceUnit_tooltip" text="Distanzeinheit Meter oder Fuß."/>
@@ -414,8 +414,8 @@ Der Kurs wird beim Schließen automatisch gespeichert und überschrieben.
     <text name="CP_courseManager_targetIsNoFolderError" text="Ziel ist kein Ordner (%s)!"/>
     <text name="CP_courseManager_targetIsNoCourseError" text="Ziel ist kein Kurs (%s)!"/>
     <text name="CP_courseManager_invalidNameError" text="Kursname (%s) ist ungültig!"/>
-    <text name="CP_courseManager_basicSettings" text="Kurse speichern/laden."/>
-    <text name="CP_courseManager_advancedSettings" text="Kurse/Ordner editieren."/>
+    <text name="CP_courseManager_basicSettings" text="Kurse speichern/laden"/>
+    <text name="CP_courseManager_advancedSettings" text="Kurse/Ordner editieren"/>
     <text name="CP_courseManager_activate" text="aktivieren"/>
     <!---->
     <!--Course editor-->
@@ -452,7 +452,7 @@ Der Kurs wird beim Schließen automatisch gespeichert und überschrieben.
     <text name="CP_infoTexts_blockedByObject" text="Wird blockiert"/>
     <text name="CP_infoTexts_shouldRefuel" text="Sollte aufgetankt werden"/>
     <text name="CP_infoTexts_needsFuel" text="Muss aufgetankt werden"/>
-    <text name="CP_infoTexts_needsRepair" text="Sollte repariert werden"/>
+    <text name="CP_infoTexts_needsRepair" text="Muss repariert werden"/>
     <text name="CP_infoTexts_needsFilling" text="Muss aufgefüllt werden"/>
     <text name="CP_infoTexts_needsUnloading" text="Muss entladen werden"/>
     <text name="CP_infoTexts_workFinished" text="Arbeit beendet"/>
@@ -470,8 +470,8 @@ Der Kurs wird beim Schließen automatisch gespeichert und überschrieben.
     <text name="CP_infoTexts_errorAutomaticCutterAttachNotActive" text="Schneidwerk ankuppeln deaktiviert"/>
     <text name="CP_infoTexts_errorWrongSeason" text="Falsche Jahreszeit"/>
     <text name="CP_infoTexts_errorWrongMissionFruitType" text="Falsche Frucht für Mission ausgewählt"/>
-    <text name="CP_infoTexts_errorPalletsAreFull" text="Paletten sind voll."/>
-    <text name="CP_infoTexts_errorPalletsAreEmpty" text="Keine Palette"/>
+    <text name="CP_infoTexts_errorPalletsAreFull" text="Paletten sind voll"/>
+    <text name="CP_infoTexts_errorPalletsAreEmpty" text="Keine Paletten"/>
     <!---->
     <!--Custom field manager-->
     <!---->
@@ -485,10 +485,10 @@ Der Kurs wird beim Schließen automatisch gespeichert und überschrieben.
     <text name="CP_customFieldManager_draw_header" text="Zeichne Linien mit Rechtsklick."/>
     <text name="CP_customFieldManager_draw_sub_header" text="Halte die linke Shift Taste für eine gerade Linie."/>
     <text name="CP_customFieldManager_save" text="Randkurs speichern"/>
-    <text name="CP_controllerGui_startRecording" text="Starte Feldrandaufnahme."/>
-    <text name="CP_controllerGui_stopRecording" text="Stoppe Feldrandaufnahme."/>
-    <text name="CP_controllerGui_pauseRecording" text="Pausieren der Feldrandaufnahme."/>
-    <text name="CP_controllerGui_unpauseRecording" text="Fortsetzen der Feldrandaufnahme."/>
+    <text name="CP_controllerGui_startRecording" text="Feldrandaufnahme starten"/>
+    <text name="CP_controllerGui_stopRecording" text="Feldrandaufnahme stoppen"/>
+    <text name="CP_controllerGui_pauseRecording" text="Feldrandaufnahme pausieren"/>
+    <text name="CP_controllerGui_unpauseRecording" text="Feldrandaufnahme fortsetzen"/>
     <!---->
     <!--Help menu-->
     <!---->
@@ -624,26 +624,26 @@ Ordner müssen leer sein damit sie gelöscht werden können.
     <text name="CP_help_page_minihud_title" text="Mini-HUD"/>
     <text name="CP_help_page_minihud_general_title" text="Grundfunktionen"/>
     <text name="CP_help_page_minihud_general_text" text="
-A: Mit gedrückter linker Maustaste auf der Kopfzeile lässt sich das HUD auf eine beliebige Position verschieben. Auf der rechten Seite wird die Version angezeigt und ein X zum schließen mit der Maustaste.
+A: Mit gedrückter linker Maustaste auf der Kopfzeile lässt sich das HUD auf eine beliebige Position verschieben. Auf der rechten Seite wird die Version angezeigt und ein X zum Schließen mit der Maustaste.
 B: Um schnell zu den globalen Einstellungen zu gelangen, kannst du mit der Maus auf das CP-Icon klicken.
 C: Hier wird der Name deines Fahrzeugs angezeigt, klickst du darauf, gelangst du direkt in die CP-Fahrzeugeinstellungen.
-D: Diese Symbole sind dafür da um (1) den aktuell geladenen Kurs zu löschen, (2a) die Anzeige des geladenen Kurs durch zu schalten (2b) wenn kein Kurs geladen ist, einen Rekord Button um einen Feldrandkurs aufzuzeichnen, (3) den Helfer zu starten und zu stoppen.
+D: Diese Symbole sind dafür da um (1) den aktuell geladenen Kurs zu löschen, (2a) die Anzeige des geladenen Kurs durch zu schalten (2b) wenn kein Kurs geladen ist, ein Aufnahme-Button um einen Feldrandkurs aufzuzeichnen, (3) den Helfer zu starten und zu stoppen.
 E: Dieses Ziel Icon hat verschiedene Funktionen. Je nach dem gewähltem Modus gelangt man direkt auf die Helferkarte mit dem passenden Helfer Job. Dort können dann mögliche fehlende Marker, wie die Feldposition platziert werden. Links davon wird bei der Feldarbeit die verbleibende Zeit vom Kurs angezeigt.
-F: Durch das Klicken auf diesen Text werden die erlaubten Modi je nach Fahrzeug Gespannt durchgeschaltet.
-G: Unterhalb dieser Linie befinden sich Modi abhängige Einstellungen, die in den nachfolgenden Bildern erklärt werden.
+F: Durch das Klicken auf diesen Text werden die erlaubten Modi je nach Fahrzeuggespann durchgeschaltet.
+G: Unterhalb dieser Linie befinden sich modusabhängige Einstellungen, die in den nachfolgenden Bildern erklärt werden.
 "/>
     <text name="CP_help_page_minihud_fieldwork_title" text="Feldarbeit"/>
     <text name="CP_help_page_minihud_fieldwork_text" text="
-A: Mit der Maus lässt sich hier der Startpunkt per Mausklick durchschalten. Ist ein Multitool Kurs geladen, kann auf der rechten Seite die Bahn gewählt werden.
-B: Hier wird der aktuell Name des geladenen Kurses angezeigt. Ein neu generierter Kurs wird mit dem Namen &quot;temporärer Kurs&quot; angezeigt. Die Striche auf der rechten Seite zeigen den aktuellen Fortschritt mit dem aktuellen Wegpunkt zu der gesamten Anzahl an Wegpunkten.
+A: Mit der Maus lässt sich hier der Startpunkt per Mausklick durchschalten. Ist ein Multitoolkurs geladen, kann auf der rechten Seite die Bahn gewählt werden.
+B: Hier wird der aktuelle Name des geladenen Kurses angezeigt. Ein neu generierter Kurs wird mit dem Namen &quot;temporärer Kurs&quot; angezeigt. Die Striche auf der rechten Seite zeigen den aktuellen Fortschritt mit dem aktuellen Wegpunkt zu der gesamten Anzahl an Wegpunkten.
 C: Die Arbeitsbreite kann hier mit einem Mausklick neu berechnet werden, auf der rechten Seite kannst du mit klick auf + und - oder mit dem Mausrad auf der Zahl die Arbeitsbreite verstellen.
-D: Hier kann ein Geräte Versatz zur Mitte des Fahrzeugs eingestellt werden. Dieses wird bei manchen Anbaugeräten benötigt. Das Einstellen läuft genauso wie bei der Arbeitsbreite.
+D: Hier kann ein Geräteversatz zur Mitte des Fahrzeugs eingestellt werden. Dieses wird bei manchen Anbaugeräten benötigt. Das Einstellen läuft genauso wie bei der Arbeitsbreite.
 E: Mit einem Klick auf das Symbol auf der rechten Seite wird der Kurs des Fahrzeuges kopiert. Solange ein Kurs in der Zwischenablage ist wird auf der linken Seite der Name des Kurses angezeigt. Durch das neu erschiene Symbol kann der Kurs in ein anderes Fahrzeug geladen werden. Das Papierkorb Symbol löscht den aktuellen Kurs aus der Zwischenablage.
 "/>
     <text name="CP_help_page_minihud_combineunload_title" text="Drescher Abfahrer"/>
     <text name="CP_help_page_minihud_combineunload_text" text="
 A: Da sowohl ein Drescher als auch ein Lader (z.B. ROPA Maus) gleichzeitig auf einem Feld arbeiten könnten, kann hier gewählt werden, welches Gerät abgetankt werden soll.
-B: Hier kannst du bestimmen, ab wie viel Prozent der Abfahrer zum entladen fahren soll. Einstellbar zwischen 40% und 100%. Die Bedienung ist gleich wie bei der Arbeitsbreite vom Feldarbeitsmodus.
+B: Hier kannst du bestimmen, ab wie viel Prozent der Abfahrer zum Entladen fahren soll. Einstellbar zwischen 40% und 100%. Die Bedienung ist gleich wie bei der Arbeitsbreite vom Feldarbeitsmodus.
 C: Es kann vorkommen, dass die Position des Abfahrers nicht perfekt passt. Das kann am Anhänger oder am Abladerohr des Ernters liegen. Manchmal reicht auch ein Gefälle des Feldes aus. Hier kannst du den Abstand zum Ernter einstellen.
 D: Das gleiche lässt sich auch für eine Korrektur nach vorne oder nach hinten zum Ernter einstellen.
 E: Ähnlich wie beim Kopieren eines Kurses, werden hier die Positionen der Marker für den Abfahrer kopiert und können dann auf weiteren Abfahrer übertragen werden.
@@ -651,21 +651,19 @@ E: Ähnlich wie beim Kopieren eines Kurses, werden hier die Positionen der Marke
     <text name="CP_help_page_minihud_balecollect_title" text="Ballen sammeln/wickeln"/>
     <text name="CP_help_page_minihud_balecollect_text" text="
 A: Ballen die nach dem letzten automatischen Scan noch auf dem Feld liegen.
-
-
 B: Ballen die gesammelt oder bearbeitet werden sollen (z.B. nur gewickelte Ballen sammeln).
-C: Dieser Offset stellt den Versatz ein der zwischen Traktormitte und der mitte der Gabel liegt. Es kann nötig sein, bei einem breiterem Traktor (z.B. Breitreifen) diesen Wert an zu passen.
+C: Dieser Offset stellt den Versatz ein der zwischen Traktormitte und der Mitte der Gabel liegt. Es kann nötig sein, bei einem breiterem Traktor (z.B. Breitreifen) diesen Wert an zu passen.
 "/>
-    <text name="CP_help_page_minihud_siloloader_title" text="Silo Lader"/>
+    <text name="CP_help_page_minihud_siloloader_title" text="Silolader"/>
     <text name="CP_help_page_minihud_siloloader_text" text="
 A: Die aktuelle Füllmenge des gewählten Haufens.
 B: Arbeitsbreite des Laders oder der Schaufel, genauso wie bei der Feldarbeit.
-C: Offset für die Ladehöhe einer Schaufel. Dieser kann genutzt werden falls die Schaufel nicht tief genug gesenkt wird oder sogar zu tief gesenkt wird.
+C: Offset für die Ladehöhe einer Schaufel. Dieser kann genutzt werden falls die Schaufel nicht tief genug oder zu tief gesenkt wird.
 D: Wie schon beim Abfahrer, kannst du hier die benötigten Marker kopieren und auf ein weiteres Gerät einfügen.
 "/>
     <text name="CP_help_page_minihud_siloworker_title" text="Silo Arbeiter"/>
     <text name="CP_help_page_minihud_siloworker_text" text="
-A: Wie auch beim Silo Lader, ist die Schildhöhe entscheident. Die kannst du hier anpassen.
+A: Wie auch beim Silolader, ist die Schildhöhe entscheidend. Die kannst du hier anpassen.
 B: Diese Anzeige zeigt dir den aktuellen Fortschritt der Siloverdichtung an. Durch einen Mausklick auf den Text, kannst du umschalten, ob der Abfahrer automatisch bei 100% Siloverdichtung stoppen soll.
 C: Auch hier spielt die Arbeitsbreite eine Rolle und kannst diese hier anpassen.
 D: Hier kannst du entscheiden, ob der Silo Arbeiter im Silo oder auf einer gewählten Parkposition warten soll, wenn sich ein Abfahrer dem Silo nähert.
@@ -765,7 +763,7 @@ Die Informationen sind:
 - Wird blockiert
 - Sollte aufgetankt werden
 - Muss aufgetankt werden
-- Sollte repariert werden
+- Muss repariert werden
 - Muss aufgefüllt werden
 - Muss entladen werden
 - Arbeit beendet
@@ -773,6 +771,7 @@ Die Informationen sind:
 - ÜLW entladen
 - Kein Geld mehr
 - Wartet auf besseres Wetter
+- Warte solange Schnee liegt
 - Warte auf Abfahrer
 - Hat den Kurs verlassen, gestoppt
 - Ballentyp nicht gefunden
@@ -780,6 +779,11 @@ Die Informationen sind:
 - Abladen zum Boden nicht möglich
 - Schneidwerk nicht unterstützt
 - Schneidwerk ankuppeln deaktiviert
+- Falsche Jahreszeit
+- Falsche Frucht für Mission ausgewählt
+- Paletten sind voll
+- Keine Paletten
+
 "/>
     <text name="CP_help_page_vineWork_title" text="Arbeit auf Reben"/>
     <text name="CP_help_page_vineWorkConditions_text" text="
@@ -914,7 +918,7 @@ Anschließend kann der Helfer gestartet werden.
 "/>
     <text name="CP_help_page_shovelLoader_title" text="Radlader/Frontlader"/>
     <text name="CP_help_page_shovelLoaderGeneral_text" text="
-Mit einem Radlader oder Traktor mit Frontlader und Schaufel lassen sich Haufen vom Boden oder aus einem Bunker Silo automatisch aufnehmen und in einen Anhänger oder Lager abladen.
+Mit einem Radlader oder Traktor mit Frontlader und Schaufel lassen sich Haufen vom Boden oder aus einem Bunkersilo automatisch aufnehmen und in einen Anhänger oder Lager abladen.
 Die Schaufel wird dabei automatisch an die richtigen Positionen gefahren.
 Ist der Modus im HUD nicht direkt zu sehen, schalte die &quot;Startposition&quot; durch bis der Modus erscheint.
 
@@ -955,7 +959,7 @@ Das Kreuz sollte jetzt, wie im Bild dargestellt, gelb sein.
     <text name="input_CP_DBG_CHANNEL_MENU_VISIBILITY" text="CP: Debugkanäle-Menü anzeigen/ausblenden"/>
     <text name="input_CP_OPEN_CLOSE_VEHICLE_SETTING_DISPLAY" text="CP: Mini-GUI öffnen"/>
     <text name="input_CP_START_STOP" text="CP: CP-Helfer starten/stoppen"/>
-    <text name="input_CP_CHANGE_SELECTED_JOB" text="CP: Aktueller ausgewählten Job ändern"/>
+    <text name="input_CP_CHANGE_SELECTED_JOB" text="CP: Aktuell ausgewählten Job ändern"/>
     <text name="input_CP_CHANGE_STARTING_POINT" text="CP: Startpunkt ändern"/>
     <text name="input_CP_CLEAR_COURSE" text="CP: Aktuell geladenen Kurs löschen"/>
     <text name="input_CP_CHANGE_COURSE_VISIBILITY" text="CP: Kurs Sichtbarkeit ändern"/>
