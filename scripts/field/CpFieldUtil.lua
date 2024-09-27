@@ -92,8 +92,9 @@ function CpFieldUtil.saveAllFields()
                 for i, point in ipairs(points) do
                     setXMLString(xmlFile, key .. (".point%d#pos"):format(i), ("%.2f %.2f %.2f"):format(point.x, point.y, point.z))
                 end
-                local islandNodes = Island.findIslands( Polygon:new(CourseGenerator.pointsToXy(points)))
-                CourseGenerator.pointsToXzInPlace(islandNodes)
+                local islandNodes = CourseGenerator.Island.findIslands(
+                        CourseGenerator.Field(field.fieldId, field.fieldId, Polygon(CpMathUtil.pointsFromGameInPlace(points))))
+                CpMathUtil.pointsToGameInPlace(islandNodes)
                 for i, islandNode in ipairs(islandNodes) do
                     setXMLString(xmlFile, key .. ( ".islandNode%d#pos"):format( i ), ("%.2f %2.f"):format( islandNode.x, islandNode.z ))
                 end
@@ -137,7 +138,7 @@ end
 
 --- Get the field polygon (field edge vertices) at the world position.
 --- If there is also a custom field at the position it may return that, depending on the user's preference set.
----@return Polygon, boolean the field polygon, nil if not on field. True if a custom field was selected
+---@return {x, y, z}[], boolean the field polygon, nil if not on field. True if a custom field was selected
 function CpFieldUtil.getFieldPolygonAtWorldPosition(x, z)
     local fieldPolygon, isCustomField
     local customField = g_customFieldManager:getCustomField(x, z)
@@ -156,4 +157,12 @@ function CpFieldUtil.getFieldPolygonAtWorldPosition(x, z)
         fieldPolygon = mapFieldPolygon
     end
     return fieldPolygon, isCustomField
+end
+
+--- There is an active mission on fieldId
+---@param fieldId number
+---@return boolean true if this field is a mission field
+function CpFieldUtil.isActiveMissionField(fieldId)
+    local mission = g_missionManager.fieldToMission[fieldId]
+    return mission and mission.status == AbstractMission.STATUS_RUNNING
 end

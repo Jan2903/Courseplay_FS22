@@ -24,11 +24,16 @@ function CpCourseManager.registerXmlSchemaValues(schema,baseKey)
 	schema:register(XMLValueType.STRING, baseKey .. "#name", "Course name")
 	schema:register(XMLValueType.FLOAT, baseKey  .. "#workWidth", "Course work width")
 	schema:register(XMLValueType.INT, baseKey .. "#numHeadlands", "Course number of headlands")
+    -- TODO: remove once backwards compatibility is not needed
 	schema:register(XMLValueType.INT, baseKey .. "#multiTools", "Course multi tools")
-    schema:register(XMLValueType.BOOL, baseKey .. "#isCompressed", "Waypoints between rows were removed.")
+	schema:register(XMLValueType.INT, baseKey .. "#nVehicles", "Number of vehicles for a multi-vehicle course")
+    schema:register(XMLValueType.BOOL, baseKey .. "#headlandClockwise", "Headlands are clockwise.")
+    schema:register(XMLValueType.BOOL, baseKey .. "#islandHeadlandClockwise", "Headlands around islands are clockwise.")
     schema:register(XMLValueType.BOOL, baseKey .. "#wasEdited", "Was the course edited by the course editor.")
-	schema:register(XMLValueType.STRING, baseKey .. ".waypoints", "Course serialized waypoints") -- old save format
-    schema:register(XMLValueType.VECTOR_N, baseKey .. Waypoint.xmlKey.."(?)", "Course serialized waypoints")
+    schema:register(XMLValueType.BOOL, baseKey .. "#compacted", "Rows are compacted, only start and end is saved.")
+    schema:register(XMLValueType.STRING, baseKey .. ".waypoints", "Course serialized waypoints") -- old save format
+    Waypoint.registerXmlSchema(schema, baseKey)
+    Course.MultiVehicleData.registerXmlSchema(schema, baseKey)
 end
 
 function CpCourseManager.initSpecialization()
@@ -81,8 +86,6 @@ end
 function CpCourseManager.registerFunctions(vehicleType)
     SpecializationUtil.registerFunction(vehicleType, 'setFieldWorkCourse', CpCourseManager.setFieldWorkCourse)
     SpecializationUtil.registerFunction(vehicleType, 'getFieldWorkCourse', CpCourseManager.getFieldWorkCourse)
-    SpecializationUtil.registerFunction(vehicleType, 'setOffsetFieldWorkCourse', CpCourseManager.setOffsetFieldWorkCourse)
-    SpecializationUtil.registerFunction(vehicleType, 'getOffsetFieldWorkCourse', CpCourseManager.getOffsetFieldWorkCourse)
     SpecializationUtil.registerFunction(vehicleType, 'addCpCourse', CpCourseManager.addCourse)
     SpecializationUtil.registerFunction(vehicleType, 'getCpCourses', CpCourseManager.getCourses)
     SpecializationUtil.registerFunction(vehicleType, 'hasCpCourse', CpCourseManager.hasCourse)
@@ -94,14 +97,13 @@ function CpCourseManager.registerFunctions(vehicleType)
     SpecializationUtil.registerFunction(vehicleType, 'resetCpCoursesFromGui', CpCourseManager.resetCpCoursesFromGui)
     SpecializationUtil.registerFunction(vehicleType, 'getCurrentCpCourseName', CpCourseManager.getCurrentCourseName)
     SpecializationUtil.registerFunction(vehicleType, 'setCpCourseName', CpCourseManager.setCpCourseName)
+    SpecializationUtil.registerFunction(vehicleType, 'cpReverseCurrentCourse', CpCourseManager.cpReverseCurrentCourse)
 
     SpecializationUtil.registerFunction(vehicleType, 'drawCpCoursePlot', CpCourseManager.drawCpCoursePlot)
     SpecializationUtil.registerFunction(vehicleType, 'updateCpCourseDisplayVisibility', CpCourseManager.updateCpCourseDisplayVisibility)
 
     SpecializationUtil.registerFunction(vehicleType, 'loadAssignedCpCourses', CpCourseManager.loadAssignedCourses)
     SpecializationUtil.registerFunction(vehicleType, 'saveAssignedCpCourses', CpCourseManager.saveAssignedCourses)
-
-    SpecializationUtil.registerFunction(vehicleType, 'getCpLegacyWaypoints', CpCourseManager.getLegacyWaypoints)
 
     SpecializationUtil.registerFunction(vehicleType, 'cpStartCourseRecorder', CpCourseManager.cpStartCourseRecorder)
     SpecializationUtil.registerFunction(vehicleType, 'cpStopCourseRecorder', CpCourseManager.cpStopCourseRecorder)
@@ -130,8 +132,6 @@ function CpCourseManager:onLoad(savegame)
     spec.courseDisplay = BufferedCourseDisplay() 
     spec.courseRecorder = CourseRecorder(spec.courseDisplay)
     g_assignedCoursesManager:registerVehicle(self, self.id)
-
-    spec.legacyWaypoints = {}
 
     spec.assignedCoursesID = nil
 end
@@ -247,24 +247,6 @@ function CpCourseManager:getFieldWorkCourse()
     return spec.courses[1]
 end
 
---- Set the offset course which is generated for a multitool configuration (offset to the left or right when multiple
---- vehicles working on the same field)
---- We store this here as we have to generate the offset course at the start to see how far we need to drive to start working
---- and if we need a drive to task to that point. Now, since we already generated the offset course, we don't want to
---- do that again when the fieldwork task starts.
----@param course Course
-function CpCourseManager:setOffsetFieldWorkCourse(course)
-    local spec = self.spec_cpCourseManager
-    spec.offsetFieldWorkCourse = course
-end
-
---- If the offset course has been calculated for a multitool config, return here
----@return Course offset course
-function CpCourseManager:getOffsetFieldWorkCourse()
-    local spec = self.spec_cpCourseManager
-    return spec.offsetFieldWorkCourse
-end
-
 function CpCourseManager:getCourses()
     local spec = self.spec_cpCourseManager 
     return spec.courses
@@ -351,17 +333,6 @@ function CpCourseManager:drawCpCoursePlot(map, isHudMap)
 end
 
 function CpCourseManager:onDraw()
-    --- Draw debug information of the generated fieldwork course.
-    local course = self:getFieldWorkCourse()
-    if course then 
-        if CpDebug:isChannelActive(CpDebug.DBG_COURSES, self) then
-            local info = {
-                title = self:getCurrentCpCourseName(),
-                content = course:getDebugTable()
-            }
-            CpDebug:drawVehicleDebugTable(self,{info})
-        end
-    end
 end
 
 function CpCourseManager:onCpDrawHudMap(map)
@@ -445,17 +416,26 @@ function CpCourseManager:setCpCourseName(name)
     end
 end
 
-function CpCourseManager:appendCourse(course)
-
+function CpCourseManager:cpReverseCurrentCourse(noEventSend)
+    local spec = self.spec_cpCourseManager
+    ---@type Course
+    local course = spec.courses[1]
+    if course then
+        course:reverse()
+        spec.coursePlot:setWaypoints(course.waypoints)
+        spec.coursePlot:setVisible(true)
+        if noEventSend == nil or noEventSend == false then
+            CourseReverseEvent.sendEvent(self)
+        end
+        if g_client then
+            spec.courseDisplay:setCourse(self:getFieldWorkCourse())
+            self:updateCpCourseDisplayVisibility()
+        end
+    end
 end
 
-function CpCourseManager:getFieldworkCourseLegacy(vehicle)
-	for _, course in ipairs(CpCourseManager.getCourses(self)) do
-		if course:isFieldworkCourse() then
-			CpUtil.debugVehicle(CpDebug.DBG_COURSES,vehicle, 'getting fieldwork course %s', course:getName())
-			return course
-		end
-	end
+function CpCourseManager:appendCourse(course)
+
 end
 
 function CpCourseManager:rememberCpLastWaypointIx(ix)
@@ -466,27 +446,6 @@ end
 function CpCourseManager:getCpLastRememberedWaypointIx()
     local spec = self.spec_cpCourseManager
     return spec.rememberedWpIx
-end
-
---- For backwards compatibility, create all waypoints of all loaded courses for this vehicle, as it
---- used to be stored in the terrible global Waypoints variable
---- Update all the legacy (as usual global) data structures related to a vehicle's loaded course
--- TODO: once someone has the time and motivation, refactor those legacy structures
-function CpCourseManager:updateLegacyWaypoints()
-    local spec = self.spec_cpCourseManager 
-	spec.legacyWaypoints = {}
-	local n = 1
-	for _, course in ipairs(CpCourseManager.getCourses(self)) do
-		for i = 1, course:getNumberOfWaypoints() do
-			table.insert(spec.legacyWaypoints, Waypoint(course:getWaypoint(i), n))
-			n = n +1
-		end
-	end
-end
-
-function CpCourseManager:getLegacyWaypoints()
-    local spec = self.spec_cpCourseManager 
-	return spec and spec.legacyWaypoints
 end
 
 ------------------------------------------------------------------------------------------------------------------------

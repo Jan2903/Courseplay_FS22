@@ -39,6 +39,10 @@ local context = PathfinderContext():maxFruitPercent(100):useFieldNum(10):vehicle
 ---@field mustBeAccurate function
 ---@field areaToIgnoreFruit function
 ---@field areaToIgnoreOffFieldPenalty function
+---@field ignoreFruitHeaps function
+---@field maxIterations function
+---@field obstacleAtStartRange function
+---@field ignoreTrailerAtStartRange function
 ---@field _maxFruitPercent number
 ---@field _offFieldPenalty number
 ---@field _useFieldNum number
@@ -50,8 +54,12 @@ local context = PathfinderContext():maxFruitPercent(100):useFieldNum(10):vehicle
 ---@field _areaToIgnoreFruit PathfinderUtil.Area|nil
 ---@field _areaToIgnoreOffFieldPenalty PathfinderUtil.NodeArea|nil
 ---@field _ignoreFruitHeaps boolean
+---@field _maxIterations number
+---@field _obstacleAtStartRange number
+---@field _ignoreTrailerAtStartRange number
 PathfinderContext = CpObject()
 PathfinderContext.defaultOffFieldPenalty = 7.5
+PathfinderContext.preferredPathAffinity = 5
 PathfinderContext.attributesToDefaultValue = {
     -- If an 4 x 4 m area around a pathfinder node has more than this fruit, a penalty of 0.5 * actual fruit
     -- percentage will be applied to that node.
@@ -76,6 +84,9 @@ PathfinderContext.attributesToDefaultValue = {
     ["mustBeAccurate"] = false,
     -- No fruit penalty in this area (e.g. when we know the goal is in fruit but want to avoid fruit all the way there)
     ["areaToIgnoreFruit"] = CpObjectUtil.BUILDER_API_NIL,
+    -- A path [{x, z}, {x, z}, ...] that the pathfinder will try to follow. Nodes closer than
+    -- PathfinderContext.preferredPathAffinity to the path will have a negative penalty
+    ["preferredPath"] = CpObjectUtil.BUILDER_API_NIL,
     -- No off-field penalty in this area (for instance when need to approach another vehicle, such as a trailer
     -- to unload to, regardless of it is on the field or not, but we do want to have normal off-field penalty for
     -- the rest of the path
@@ -89,7 +100,10 @@ PathfinderContext.attributesToDefaultValue = {
     -- This is useful when there's another vehicle close to the starting point, and the trailer (with the
     -- buffer area around it) often triggers a collision which, when the vehicle drives the path, isn't
     -- really a problem.
-    ["ignoreTrailerAtStartRange"] = 0
+    ["ignoreTrailerAtStartRange"] = 0,
+    -- Maximum number of iterations before the hybrid A* pathfinding gives up. The default works well
+    -- for normal sized fields, on bigger maps with huge fields you may want to double or triple this
+    ["maxIterations"] = HybridAStar.defaultMaxIterations
 }
 
 function PathfinderContext:init(vehicle)

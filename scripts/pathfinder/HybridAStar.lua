@@ -385,6 +385,9 @@ function HybridAStar.NodeList:print()
     end
 end
 
+--- A reasonable default maximum iterations that works for the majority of our use cases
+HybridAStar.defaultMaxIterations = 40000
+
 ---@param yieldAfter number
 ---@param maxIterations number
 ---@param mustBeAccurate boolean|nil
@@ -393,7 +396,7 @@ function HybridAStar:init(vehicle, yieldAfter, maxIterations, mustBeAccurate)
     self.count = 0
     self.yields = 0
     self.yieldAfter = yieldAfter or 200
-    self.maxIterations = maxIterations or 40000
+    self.maxIterations = maxIterations or HybridAStar.defaultMaxIterations
     self.mustBeAccurate = mustBeAccurate
     self.path = {}
     self.iterations = 0
@@ -474,6 +477,7 @@ function HybridAStar:findPath(start, goal, turnRadius, allowReverse, constraints
         analyticPath, analyticSolutionLength, pathType = self:getAnalyticPath(start, goal, turnRadius, allowReverse, hitchLength)
         if self:isPathValid(analyticPath) then
             self:debug('Found collision free analytic path (%s) from start to goal', pathType)
+            CourseGenerator.addDebugPolyline(Polyline(analyticPath))
             return true, analyticPath
         end
         self:debug('Length of analytic solution is %.1f', analyticSolutionLength)
@@ -701,13 +705,14 @@ function HybridAStarWithAStarInTheMiddle:init(vehicle, hybridRange, yieldAfter, 
     self.ALL_HYBRID = 4 -- start and goal close enough, we only need a single phase with hybrid
     self.hybridRange = hybridRange
     self.yieldAfter = yieldAfter or 100
+    self.maxIterations = maxIterations
     self.hybridAStarPathfinder = HybridAStar(vehicle, self.yieldAfter, maxIterations, mustBeAccurate)
     self.aStarPathfinder = self:getAStar()
     self.analyticSolver = analyticSolver
 end
 
 function HybridAStarWithAStarInTheMiddle:getAStar()
-    return AStar(self.vehicle, self.yieldAfter)
+    return AStar(self.vehicle, self.yieldAfter, self.maxIterations)
 end
 
 ---@param start State3D start node
@@ -790,11 +795,7 @@ function HybridAStarWithAStarInTheMiddle:resume(...)
         if self.phase == self.ALL_HYBRID then
             if path then
                 -- start and goal near, just one phase, all hybrid, we are done
-                -- remove last waypoint as it is the approximate goal point and may not be aligned
-                local result = Polygon:new(path)
-                result:calculateData()
-                result:space(math.pi / 20, 2)
-                return PathfinderResult(true, result)
+                return PathfinderResult(true, path)
             else
                 self:debug('all hybrid: no path found')
                 return PathfinderResult(true, nil, goalNodeInvalid, self.currentPathfinder.nodes.highestDistance,

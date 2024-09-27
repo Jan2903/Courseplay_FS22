@@ -146,6 +146,21 @@ function CpMathUtil.getAreaOfPolygon(polygon)
 	return math.abs(area)
 end
 
+--- Get the circumference of a polygon in meters (the class Polygon has its own calculation, this is to be
+--- used for a very generic case with polygons in game or normal coordinate systems)
+---@param polygon [] array elements can be {x, z}, {x, y, z} or {x, y}
+function CpMathUtil.getCircumferenceOfPolygon(polygon)
+	local circumference = 0
+	for i = 1, #polygon - 1 do
+		local x1, y1 = polygon[i].x, polygon[i].z and -polygon[i].z or polygon[i].y
+		local x2, y2 = polygon[i + 1].x, polygon[i + 1].z and -polygon[i + 1].z or polygon[i + 1].y
+		local dx, dy  = x2 - x1, y2 - y1
+		circumference = circumference + math.sqrt(dx * dx + dy * dy)
+	end
+	return circumference
+end
+
+
 --- De-Casteljau algorithm for bezier curves.
 --- https://en.wikipedia.org/wiki/De_Casteljau%27s_algorithm
 function CpMathUtil.de_casteljau(t, points)
@@ -166,4 +181,130 @@ function CpMathUtil.de_casteljau(t, points)
 					(1-t) * points[2][2] + t * points[3][2]
 	
 	return (1-t)*q0_x + t*q1_x, (1-t)*q0_y + t*q1_y
+end
+
+
+local function normalizeAngle( a )
+	return a >= 0 and a or 2 * math.pi + a
+end
+
+function CpMathUtil.getDeltaAngle(a, b)
+	-- convert the 0 - -180 range into 180 - 360
+	if math.abs( a - b ) > math.pi then
+		a = normalizeAngle( a )
+		b = normalizeAngle( b )
+	end
+	-- calculate difference in this range
+	return b - a
+end
+
+--- Get the average of two angles.
+-- Works fine even for the transition from -pi/2 to +pi/2
+function CpMathUtil.getAverageAngle( a1, a2 )
+	-- convert the 0 - -180 range into 180 - 360
+	if math.abs( a1 - a2 ) > math.pi then
+		a1 = normalizeAngle( a1 )
+		a2 = normalizeAngle( a2 )
+	end
+	-- calculate average in this range
+	local avg = ( a1 + a2 ) / 2
+	-- convert back to 0 - -180 if necessary
+	if avg > math.pi then avg = avg - 2 * math.pi end
+	return avg
+end
+
+
+------------------------------------------------------------------------------------------------------------------------
+--- Transform coordinates between the game and the coordinate system used by the
+--- course generator and the pathfinder.
+---
+--- The course generator and the pathfinder work in the X/Y plane of a left-handed coordinate system as known
+--- from the school. This is because both can be developed and tested in a standalone configuration, without
+--- the game running, and it is just easier to think in the familiar left-handed X/Y system.
+---
+--- The game's ground plane (where the courses are generated and the path must be found) is the X/Z plane of a
+--- right-handed coordinate system. The price to be paid for the convenience of the familiar left-handed X/Y
+--- system is that we need to transform between the two systems.
+---
+--- One could implement the transformation as part of the geometry class constructors and the Course class
+--- so they accept vertices in both systems, but I think it is much cleaner to make these transformations
+--- explicit.
+------------------------------------------------------------------------------------------------------------------------
+function CpMathUtil.pointsFromGame(points)
+	local result = {}
+	for _, point in ipairs(points) do
+		table.insert(result, { x = point.x, y = -point.z })
+	end
+	return result
+end
+
+function CpMathUtil.pointsToGame(points)
+	local result = {}
+	for _, point in ipairs(points) do
+		table.insert(result, { x = point.x, z = -point.y })
+	end
+	return result
+end
+
+--- Convert an array of points from x/y to x/z in place (also keeping other attributes)
+function CpMathUtil.pointsToGameInPlace(points)
+	for _, point in ipairs(points) do
+		point.z = -point.y
+		-- wipe y as it is a different coordinate in this system
+		point.y = nil
+	end
+	return points
+end
+
+--- Convert an array of points from x/z to x/y in place (also keeping other attributes)
+function CpMathUtil.pointsFromGameInPlace(points)
+	for _, point in ipairs(points) do
+		point.y = -point.z
+		point.z = nil
+	end
+	return points
+end
+
+function CpMathUtil.pointFromGame(point)
+	return ({ x = point.x or point.cx, y = -(point.z or point.cz) })
+end
+
+function CpMathUtil.pointToGame(point)
+	return ({ x = point.x, z = -point.y })
+end
+
+--- Convert the game angle in the RH X/Z plane (measured from the x axis up in radians)
+--- to the LH X/Y plane
+function CpMathUtil.angleToGameDeg(angle)
+	local a = math.deg(angle) + 90
+	if a > 180 then
+		a = a - 360
+	end
+	return a
+end
+
+function CpMathUtil.angleToGame(angle)
+	local a = angle + math.pi / 2
+	if a > math.pi then
+		a = a - 2 * math.pi
+	end
+	return a
+end
+
+--- Convert the game angle in the LH X/Y plane
+--- to the RH X/Z plane
+function CpMathUtil.angleFromGameDeg(angleDeg)
+	local a = angleDeg - 90
+	if a < 0 then
+		a = 360 + a
+	end
+	return math.rad(a)
+end
+
+function CpMathUtil.angleFromGame(angle)
+	local a = angle - math.pi / 2
+	if a < 0 then
+		a = 2 * math.pi + a
+	end
+	return a
 end

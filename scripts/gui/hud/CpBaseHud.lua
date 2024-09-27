@@ -79,6 +79,9 @@ CpBaseHud.uvs = {
     eye = { 
         {148, 148, 32, 32}, {256, 512}
     },
+    refresh = { 
+        {220, 220, 32, 32}, {256, 512}
+    },
     cpIcon = {
         {80, 26, 144, 144}, {256, 256}
     },
@@ -234,7 +237,7 @@ function CpBaseHud:init(vehicle)
     --- Title 
     local x, y = unpack(self.lines[8].left)
     x = x + cpIconWidth + self.wMargin/2
-    self.vehicleNameBtn = CpTextHudElement.new(self.baseHud , x , y, self.defaultFontSize)
+    self.vehicleNameBtn = CpTextHudElement.new(self.baseHud ,x ,y + self.hMargin/8, self.defaultFontSize)
     self.vehicleNameBtn:setCallback("onClickPrimary", self.vehicle, 
                                 function()
                                     self:openVehicleSettingsGui(self.vehicle)
@@ -559,8 +562,7 @@ function CpBaseHud:draw(status)
 end
 
 function CpBaseHud:updateContent(vehicle, status)
-    self.vehicleNameBtn:setTextDetails(vehicle:getName())
-
+    self.vehicleNameBtn:setTextDetails(vehicle:getName(), nil, nil, nil, nil, self.width * 4/7)
     if status:getIsActive() then
         self.onOffButton:setColor(unpack(CpBaseHud.ON_COLOR))
     else
