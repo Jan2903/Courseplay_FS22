@@ -1024,7 +1024,7 @@ The shovel to shred sugar beets is completely functional as well.
     <text name="CP_help_page_shovelLoaderBasic_text" text="
 To start a wheel loader helper, you need to set the load and unload positions by clicking the target icon on the HUD.
 The loading position works the same like the one from the loader mode. A blue square will be created around the heap.
-                                                           
+
 The unloading position depends if you want to unload into a trailer or into an unloading station.
 If unloading into the trailer is selected, then the area where the trailer will be parked needs to be selected on the AI Menu.
 The helper will drive to any parked trailer in the area. The direction of the marker has no real meaning.
